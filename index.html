@@ -272,7 +272,7 @@
             width: 30%;
         }
 
-        /* Video Section */
+        /* Video Section - SEU VÍDEO JÁ ESTÁ AQUI! */
         .video-container {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 */
@@ -534,8 +534,8 @@
             <h2>Estudo Bíblico Semanal</h2>
             <p>Explore a lição desta semana através de recursos interativos e dinâmicos que aprofundam seu conhecimento das Escrituras.</p>
             <div class="week-info">
-                <p><i class="fas fa-calendar-week"></i> Semana: 25 a 31 de Março de 2024</p>
-                <p><i class="fas fa-book-bible"></i> Tema: A Fidelidade de Deus na Aliança</p>
+                <p><i class="fas fa-calendar-week"></i> Semana: 08 a 14 de Abril de 2024</p>
+                <p><i class="fas fa-book-bible"></i> Tema: A Graça de Deus em Nossas Vidas</p>
             </div>
         </div>
     </section>
@@ -555,52 +555,59 @@
                     </div>
                 </div>
                 <div class="card-content">
-                    <p><strong>Episódio 12:</strong> "A Fidelidade de Deus na Aliança" - Um estudo sobre como Deus mantém suas promessas através das gerações.</p>
-                    <p><strong>Duração:</strong> 25 minutos</p>
+                    <p><strong>Episódio 15:</strong> "A Graça que Transforma" - Um estudo sobre como a graça de Deus opera em nossas vidas diariamente.</p>
+                    <p><strong>Duração:</strong> 22 minutos</p>
+                    <p><strong>Publicado em:</strong> 08/04/2024</p>
                 </div>
                 <div class="podcast-player">
                     <p><strong>Ouvir agora:</strong></p>
                     <div class="player-controls">
-                        <button class="player-btn"><i class="fas fa-play"></i></button>
-                        <button class="player-btn"><i class="fas fa-pause"></i></button>
+                        <button class="player-btn" id="playBtn"><i class="fas fa-play"></i></button>
+                        <button class="player-btn" id="pauseBtn" style="display: none;"><i class="fas fa-pause"></i></button>
                         <div class="progress-bar">
-                            <div class="progress"></div>
+                            <div class="progress" id="podcastProgress"></div>
                         </div>
-                        <span>12:30 / 25:00</span>
+                        <span id="timeDisplay">00:00 / 22:00</span>
                     </div>
                 </div>
                 <div style="margin-top: 1.5rem;">
-                    <a href="#" class="btn"><i class="fas fa-download"></i> Baixar Episódio</a>
-                    <a href="#" class="btn btn-primary" style="margin-left: 10px;"><i class="fas fa-podcast"></i> Assinar Podcast</a>
+                    <button class="btn" id="downloadBtn"><i class="fas fa-download"></i> Baixar Episódio</button>
+                    <button class="btn btn-primary" style="margin-left: 10px;" id="subscribeBtn"><i class="fas fa-podcast"></i> Assinar Podcast</button>
                 </div>
             </section>
 
-            <!-- Video Card -->
+            <!-- Video Card - SEU VÍDEO DO YOUTUBE JÁ ESTÁ AQUI! -->
             <section id="video" class="content-card">
                 <div class="card-header">
                     <div class="card-icon">
                         <i class="fas fa-video"></i>
                     </div>
                     <div>
-                        <h3>Vídeo de Chamada <span class="weekly-badge">Novo</span></h3>
-                        <p>Apresentação da lição em vídeo</p>
+                        <h3>Vídeo da Lição <span class="weekly-badge">NOVO</span></h3>
+                        <p>Estudo Bíblico em Vídeo</p>
                     </div>
                 </div>
                 <div class="card-content">
-                    <p>Assista à introdução da lição desta semana com o professor Carlos Mendes, que contextualiza o estudo e destaca os principais pontos.</p>
+                    <p>Assista à lição desta semana em formato de vídeo. Ideal para visualizar os principais pontos do estudo.</p>
+                    <p><strong>Dica:</strong> Assista em tela cheia para melhor experiência.</p>
                 </div>
                 <div class="video-container">
-                    <!-- Vídeo placeholder - substituir pelo embed real -->
-                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #1a4b8c; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
-                        <div style="text-align: center;">
-                            <i class="fas fa-play-circle" style="font-size: 4rem; margin-bottom: 1rem;"></i>
-                            <p>Vídeo da Lição da Semana</p>
-                        </div>
-                    </div>
+                    <!-- SEU VÍDEO DO YOUTUBE -->
+                    <iframe 
+                        src="https://www.youtube.com/embed/CvV9XdCosdY" 
+                        title="Vídeo da Lição da EBD" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
                 <div style="margin-top: 1.5rem;">
-                    <a href="#" class="btn"><i class="fas fa-play-circle"></i> Assistir Completo</a>
-                    <a href="#" class="btn btn-primary" style="margin-left: 10px;"><i class="fas fa-share-alt"></i> Compartilhar</a>
+                    <a href="https://youtu.be/CvV9XdCosdY" class="btn" target="_blank">
+                        <i class="fas fa-play-circle"></i> Assistir no YouTube
+                    </a>
+                    <a href="https://youtu.be/CvV9XdCosdY" class="btn btn-primary" style="margin-left: 10px;" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Abrir em Nova Janela
+                    </a>
                 </div>
             </section>
 
@@ -617,21 +624,21 @@
                 </div>
                 <div class="card-content">
                     <p>Responda às perguntas sobre a lição desta semana para fixar o conteúdo estudado e preparar-se para a discussão em classe.</p>
-                    <p><strong>Prazo de envio:</strong> até quinta-feira, 28 de março</p>
+                    <p><strong>Prazo de envio:</strong> até quinta-feira, 11 de abril</p>
                 </div>
                 <div class="questionnaire">
                     <div class="question-item">
-                        <p><strong>1. Qual é o significado da aliança de Deus com Abraão no contexto da lição desta semana?</strong></p>
-                        <textarea placeholder="Digite sua resposta aqui..."></textarea>
+                        <p><strong>1. O que significa "graça" no contexto bíblico e como ela se diferencia de "merecimento"?</strong></p>
+                        <textarea placeholder="Digite sua resposta aqui..." id="answer1"></textarea>
                     </div>
                     <div class="question-item">
-                        <p><strong>2. Como a fidelidade de Deus se manifesta em sua vida pessoal?</strong></p>
-                        <textarea placeholder="Digite sua resposta aqui..."></textarea>
+                        <p><strong>2. Como a graça de Deus se manifestou em sua vida esta semana?</strong></p>
+                        <textarea placeholder="Digite sua resposta aqui..." id="answer2"></textarea>
                     </div>
                 </div>
                 <div style="margin-top: 1.5rem;">
-                    <a href="#" class="btn"><i class="fas fa-paper-plane"></i> Enviar Respostas</a>
-                    <a href="#" class="btn btn-primary" style="margin-left: 10px;"><i class="fas fa-file-download"></i> Baixar Questionário</a>
+                    <button class="btn" id="submitAnswers"><i class="fas fa-paper-plane"></i> Enviar Respostas</button>
+                    <button class="btn btn-primary" style="margin-left: 10px;" id="downloadQuestions"><i class="fas fa-file-download"></i> Baixar Questionário</button>
                 </div>
             </section>
 
@@ -651,21 +658,21 @@
                 </div>
                 <div class="quiz-container">
                     <div class="quiz-question">
-                        <p><strong>1. Quantas vezes a palavra "fidelidade" aparece no livro de Gênesis?</strong></p>
+                        <p><strong>1. Qual destes versículos fala especificamente sobre a graça de Deus?</strong></p>
                         <div class="quiz-options">
-                            <div class="quiz-option" data-correct="false">a) 3 vezes</div>
-                            <div class="quiz-option" data-correct="true">b) 0 vezes</div>
-                            <div class="quiz-option" data-correct="false">c) 7 vezes</div>
-                            <div class="quiz-option" data-correct="false">d) 12 vezes</div>
+                            <div class="quiz-option" data-correct="false">a) "No princípio, criou Deus os céus e a terra" - Gênesis 1:1</div>
+                            <div class="quiz-option" data-correct="true">b) "Pela graça sois salvos, por meio da fé" - Efésios 2:8</div>
+                            <div class="quiz-option" data-correct="false">c) "O Senhor é meu pastor, nada me faltará" - Salmos 23:1</div>
+                            <div class="quiz-option" data-correct="false">d) "Bem-aventurados os misericordiosos" - Mateus 5:7</div>
                         </div>
                     </div>
                     <div class="quiz-question">
-                        <p><strong>2. Qual destes personagens bíblicos é conhecido como "o amigo de Deus"?</strong></p>
+                        <p><strong>2. Quem escreveu: "A minha graça te basta"?</strong></p>
                         <div class="quiz-options">
-                            <div class="quiz-option" data-correct="true">a) Abraão</div>
-                            <div class="quiz-option" data-correct="false">b) Moisés</div>
-                            <div class="quiz-option" data-correct="false">c) Davi</div>
-                            <div class="quiz-option" data-correct="false">d) Paulo</div>
+                            <div class="quiz-option" data-correct="false">a) Moisés</div>
+                            <div class="quiz-option" data-correct="false">b) Pedro</div>
+                            <div class="quiz-option" data-correct="true">c) Paulo</div>
+                            <div class="quiz-option" data-correct="false">d) João</div>
                         </div>
                     </div>
                 </div>
@@ -690,8 +697,8 @@
                     <h4>EBD Fiel</h4>
                     <p>Um portal dedicado ao estudo sério e fiel da Palavra de Deus. Recursos atualizados semanalmente para enriquecer sua Escola Bíblica Dominical.</p>
                     <div class="verse-of-day">
-                        <p>"A tua fidelidade estende-se de geração a geração; tu firmaste a terra, e ela permanece firme."</p>
-                        <p><small>Salmos 119:90</small></p>
+                        <p>"A minha graça te basta, porque o meu poder se aperfeiçoa na fraqueza."</p>
+                        <p><small>2 Coríntios 12:9</small></p>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -743,21 +750,33 @@
             });
             
             // Controles do player de podcast
-            const playBtn = document.querySelector('.player-btn:nth-child(1)');
-            const pauseBtn = document.querySelector('.player-btn:nth-child(2)');
-            const progress = document.querySelector('.progress');
+            const playBtn = document.getElementById('playBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            const podcastProgress = document.getElementById('podcastProgress');
+            const timeDisplay = document.getElementById('timeDisplay');
             
             playBtn.addEventListener('click', function() {
-                progress.style.width = '50%';
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                podcastProgress.style.width = '50%';
                 playBtn.style.display = 'none';
                 pauseBtn.style.display = 'block';
+                timeDisplay.textContent = '11:00 / 22:00';
             });
             
             pauseBtn.addEventListener('click', function() {
-                progress.style.width = '30%';
+                podcastProgress.style.width = '30%';
                 pauseBtn.style.display = 'none';
                 playBtn.style.display = 'block';
+                timeDisplay.textContent = '06:36 / 22:00';
+            });
+            
+            // Botão de download do podcast
+            document.getElementById('downloadBtn').addEventListener('click', function() {
+                alert('Em breve disponível para download!');
+            });
+            
+            // Botão de assinar podcast
+            document.getElementById('subscribeBtn').addEventListener('click', function() {
+                alert('Funcionalidade de assinatura em desenvolvimento!');
             });
             
             // Quiz Interativo
@@ -830,18 +849,54 @@
                 restartBtn.style.display = 'none';
             });
             
-            // Atualização da data da semana (exemplo simples)
-            const today = new Date();
-            const startOfWeek = new Date(today);
-            startOfWeek.setDate(today.getDate() - today.getDay());
-            const endOfWeek = new Date(startOfWeek);
-            endOfWeek.setDate(startOfWeek.getDate() + 6);
+            // Questionários - Enviar respostas
+            document.getElementById('submitAnswers').addEventListener('click', function() {
+                const answer1 = document.getElementById('answer1').value;
+                const answer2 = document.getElementById('answer2').value;
+                
+                if (answer1.trim() === '' || answer2.trim() === '') {
+                    alert('Por favor, responda todas as perguntas antes de enviar.');
+                    return;
+                }
+                
+                alert('Respostas enviadas com sucesso! Obrigado por participar.');
+                document.getElementById('answer1').value = '';
+                document.getElementById('answer2').value = '';
+            });
             
-            const options = { day: 'numeric', month: 'long' };
-            const weekInfo = document.querySelector('.week-info p:nth-child(1)');
-            if (weekInfo) {
-                weekInfo.innerHTML = `<i class="fas fa-calendar-week"></i> Semana: ${startOfWeek.toLocaleDateString('pt-BR', options)} a ${endOfWeek.toLocaleDateString('pt-BR', options)} de ${endOfWeek.getFullYear()}`;
+            // Questionários - Baixar
+            document.getElementById('downloadQuestions').addEventListener('click', function() {
+                alert('Questionário disponível para download em breve!');
+            });
+            
+            // Atualização automática da data
+            function updateWeekDates() {
+                const today = new Date();
+                const dayOfWeek = today.getDay(); // 0 = Domingo, 1 = Segunda...
+                const startOfWeek = new Date(today);
+                
+                // Ajusta para começar na segunda-feira
+                startOfWeek.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1));
+                const endOfWeek = new Date(startOfWeek);
+                endOfWeek.setDate(startOfWeek.getDate() + 6);
+                
+                const options = { day: 'numeric', month: 'long' };
+                const weekInfo = document.querySelector('.week-info');
+                
+                if (weekInfo) {
+                    const startStr = startOfWeek.toLocaleDateString('pt-BR', options);
+                    const endStr = endOfWeek.toLocaleDateString('pt-BR', options);
+                    const year = endOfWeek.getFullYear();
+                    
+                    weekInfo.innerHTML = `
+                        <p><i class="fas fa-calendar-week"></i> Semana: ${startStr} a ${endStr} de ${year}</p>
+                        <p><i class="fas fa-book-bible"></i> Tema: A Graça de Deus em Nossas Vidas</p>
+                    `;
+                }
             }
+            
+            // Chama a função para atualizar as datas
+            updateWeekDates();
             
             // Animações ao scroll
             const observerOptions = {
