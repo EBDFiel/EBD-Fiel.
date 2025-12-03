@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBD Fiel - Fiel à Palavra!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4b8c;
+            --primary-dark: #0d3261;
+            --primary-light: #2c6bc0;
+            --secondary: #d4a017;
+            --secondary-dark: #b0850c;
+            --light: #f8f5f0;
+            --dark: #2c2c2c;
+            --gray: #6c757d;
+            --success: #28a745;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 10px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20,20 L80,80 M80,20 L20,80" stroke="%231a4b8c" stroke-width="0.5" opacity="0.05"/></svg>');
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .logo-text h1 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+        }
+
+        .logo-text .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        /* Navegação */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 75, 140, 0.9), rgba(13, 50, 97, 0.9)), url('https://images.unsplash.com/photo-1518834103328-4dbb0d8400de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .week-info {
+            background-color: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: var(--radius);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Main Content */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .content-card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 5px solid var(--secondary);
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            background-color: var(--primary-light);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .card-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .card-content {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-dark);
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Podcast Player */
+        .podcast-player {
+            background-color: #f0f4f8;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .player-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .player-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background-color: #ddd;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--secondary);
+            width: 30%;
+        }
+
+        /* Video Section */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background-color: #f9f9f9;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .quiz-question {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 12px 15px;
+            background-color: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quiz-option:hover {
+            background-color: #f0f7ff;
+            border-color: var(--primary-light);
+        }
+
+        .quiz-option.selected {
+            background-color: #e7f4ff;
+            border-color: var(--primary);
+            color: var(--primary-dark);
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+
+        .quiz-score {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        /* Questionário */
+        .questionnaire {
+            background-color: #f9f9f9;
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .question-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .question-item:last-child {
+            border-bottom: none;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-family: 'Open Sans', sans-serif;
+            resize: vertical;
+            min-height: 100px;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .verse-of-day {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-card {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .content-card:nth-child(2) { animation-delay: 0.1s; }
+        .content-card:nth-child(3) { animation-delay: 0.2s; }
+        .content-card:nth-child(4) { animation-delay: 0.3s; }
+
+        /* Indicador de Atualização Semanal */
+        .weekly-badge {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>EBD Fiel</h1>
+                    <p class="tagline">Fiel à Palavra!</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#podcast" class="active">
+                        <i class="fas fa-podcast nav-icon"></i> Podcast
+                    </a></li>
+                    <li><a href="#video">
+                        <i class="fas fa-video nav-icon"></i> Vídeo
+                    </a></li>
+                    <li><a href="#questionarios">
+                        <i class="fas fa-question-circle nav-icon"></i> Questionários
+                    </a></li>
+                    <li><a href="#quiz">
+                        <i class="fas fa-brain nav-icon"></i> Quiz Interativo
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Estudo Bíblico Semanal</h2>
+            <p>Explore a lição desta semana através de recursos interativos e dinâmicos que aprofundam seu conhecimento das Escrituras.</p>
+            <div class="week-info">
+                <p><i class="fas fa-calendar-week"></i> Semana: 25 a 31 de Março de 2024</p>
+                <p><i class="fas fa-book-bible"></i> Tema: A Fidelidade de Deus na Aliança</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="content-grid">
+            <!-- Podcast Card -->
+            <section id="podcast" class="content-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-podcast"></i>
+                    </div>
+                    <div>
+                        <h3>Podcast da Lição <span class="weekly-badge">Atualizado</span></h3>
+                        <p>Resumo em áudio da lição da semana</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p><strong>Episódio 12:</strong> "A Fidelidade de Deus na Aliança" - Um estudo sobre como Deus mantém suas promessas através das gerações.</p>
+                    <p><strong>Duração:</strong> 25 minutos</p>
+                </div>
+                <div class="podcast-player">
+                    <p><strong>Ouvir agora:</strong></p>
+                    <div class="player-controls">
+                        <button class="player-btn"><i class="fas fa-play"></i></button>
+                        <button class="player-btn"><i class="fas fa-pause"></i></button>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <span>12:30 / 25:00</span>
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <a href="#" class="btn"><i class="fas fa-download"></i> Baixar Episódio</a>
+                    <a href="#" class="btn btn-primary" style="margin-left: 10px;"><i class="fas fa-podcast"></i> Assinar Podcast</a>
+                </div>
+            </section>
+
+            <!-- Video Card -->
+            <section id="video" class="content-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div>
+                        <h3>Vídeo de Chamada <span class="weekly-badge">Novo</span></h3>
+                        <p>Apresentação da lição em vídeo</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p>Assista à introdução da lição desta semana com o professor Carlos Mendes, que contextualiza o estudo e destaca os principais pontos.</p>
+                </div>
+                <div class="video-container">
+                    <!-- Vídeo placeholder - substituir pelo embed real -->
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #1a4b8c; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                        <div style="text-align: center;">
+                            <i class="fas fa-play-circle" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                            <p>Vídeo da Lição da Semana</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <a href="#" class="btn"><i class="fas fa-play-circle"></i> Assistir Completo</a>
+                    <a href="#" class="btn btn-primary" style="margin-left: 10px;"><i class="fas fa-share-alt"></i> Compartilhar</a>
+                </div>
+            </section>
+
+            <!-- Questionários Card -->
+            <section id="questionarios" class="content-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <div>
+                        <h3>Questionários <span class="weekly-badge">Semanal</span></h3>
+                        <p>Teste seu conhecimento</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p>Responda às perguntas sobre a lição desta semana para fixar o conteúdo estudado e preparar-se para a discussão em classe.</p>
+                    <p><strong>Prazo de envio:</strong> até quinta-feira, 28 de março</p>
+                </div>
+                <div class="questionnaire">
+                    <div class="question-item">
+                        <p><strong>1. Qual é o significado da aliança de Deus com Abraão no contexto da lição desta semana?</strong></p>
+                        <textarea placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                    <div class="question-item">
+                        <p><strong>2. Como a fidelidade de Deus se manifesta em sua vida pessoal?</strong></p>
+                        <textarea placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <a href="#" class="btn"><i class="fas fa-paper-plane"></i> Enviar Respostas</a>
+                    <a href="#" class="btn btn-primary" style="margin-left: 10px;"><i class="fas fa-file-download"></i> Baixar Questionário</a>
+                </div>
+            </section>
+
+            <!-- Quiz Interativo Card -->
+            <section id="quiz" class="content-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div>
+                        <h3>Quiz Interativo <span class="weekly-badge">Teste Rápido</span></h3>
+                        <p>Desafie seu conhecimento bíblico</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <p>Teste seu conhecimento com este quiz interativo sobre a lição da semana. Compartilhe seu resultado com os colegas de classe!</p>
+                </div>
+                <div class="quiz-container">
+                    <div class="quiz-question">
+                        <p><strong>1. Quantas vezes a palavra "fidelidade" aparece no livro de Gênesis?</strong></p>
+                        <div class="quiz-options">
+                            <div class="quiz-option" data-correct="false">a) 3 vezes</div>
+                            <div class="quiz-option" data-correct="true">b) 0 vezes</div>
+                            <div class="quiz-option" data-correct="false">c) 7 vezes</div>
+                            <div class="quiz-option" data-correct="false">d) 12 vezes</div>
+                        </div>
+                    </div>
+                    <div class="quiz-question">
+                        <p><strong>2. Qual destes personagens bíblicos é conhecido como "o amigo de Deus"?</strong></p>
+                        <div class="quiz-options">
+                            <div class="quiz-option" data-correct="true">a) Abraão</div>
+                            <div class="quiz-option" data-correct="false">b) Moisés</div>
+                            <div class="quiz-option" data-correct="false">c) Davi</div>
+                            <div class="quiz-option" data-correct="false">d) Paulo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="quiz-result" id="quizResult">
+                    <h3>Quiz Concluído!</h3>
+                    <div class="quiz-score" id="quizScore">0/2</div>
+                    <p id="quizMessage">Você pode melhorar! Revise a lição e tente novamente.</p>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <button class="btn" id="submitQuiz"><i class="fas fa-check-circle"></i> Verificar Respostas</button>
+                    <button class="btn btn-primary" id="restartQuiz" style="margin-left: 10px; display: none;"><i class="fas fa-redo"></i> Refazer Quiz</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EBD Fiel</h4>
+                    <p>Um portal dedicado ao estudo sério e fiel da Palavra de Deus. Recursos atualizados semanalmente para enriquecer sua Escola Bíblica Dominical.</p>
+                    <div class="verse-of-day">
+                        <p>"A tua fidelidade estende-se de geração a geração; tu firmaste a terra, e ela permanece firme."</p>
+                        <p><small>Salmos 119:90</small></p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#podcast"><i class="fas fa-podcast"></i> Podcast da Semana</a></li>
+                        <li><a href="#video"><i class="fas fa-video"></i> Vídeo de Chamada</a></li>
+                        <li><a href="#questionarios"><i class="fas fa-question-circle"></i> Questionários</a></li>
+                        <li><a href="#quiz"><i class="fas fa-brain"></i> Quiz Interativo</a></li>
+                        <li><a href="#"><i class="fas fa-calendar-alt"></i> Calendário de Lições</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-book"></i> Biblioteca Digital</a></li>
+                        <li><a href="#"><i class="fas fa-users"></i> Fórum de Discussão</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> Materiais para Download</a></li>
+                        <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> Guia do Professor</a></li>
+                        <li><a href="#"><i class="fas fa-mobile-alt"></i> Aplicativo EBD Fiel</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>EBD Fiel &copy; 2024 - Fiel à Palavra! | Conteúdo atualizado semanalmente</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">Este site é um recurso educacional independente. Para uso pessoal e estudo.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navegação suave
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Ativar aba clicada
+                    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Controles do player de podcast
+            const playBtn = document.querySelector('.player-btn:nth-child(1)');
+            const pauseBtn = document.querySelector('.player-btn:nth-child(2)');
+            const progress = document.querySelector('.progress');
+            
+            playBtn.addEventListener('click', function() {
+                progress.style.width = '50%';
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playBtn.style.display = 'none';
+                pauseBtn.style.display = 'block';
+            });
+            
+            pauseBtn.addEventListener('click', function() {
+                progress.style.width = '30%';
+                pauseBtn.style.display = 'none';
+                playBtn.style.display = 'block';
+            });
+            
+            // Quiz Interativo
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            const submitBtn = document.getElementById('submitQuiz');
+            const restartBtn = document.getElementById('restartQuiz');
+            const quizResult = document.getElementById('quizResult');
+            const quizScore = document.getElementById('quizScore');
+            const quizMessage = document.getElementById('quizMessage');
+            
+            let selectedOptions = [];
+            
+            quizOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove seleção de outras opções na mesma pergunta
+                    const parent = this.parentElement;
+                    parent.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Seleciona esta opção
+                    this.classList.add('selected');
+                    
+                    // Armazena a resposta
+                    const questionIndex = Array.from(this.parentElement.parentElement.parentElement.children)
+                        .indexOf(this.parentElement.parentElement);
+                    
+                    selectedOptions[questionIndex] = this;
+                });
+            });
+            
+            submitBtn.addEventListener('click', function() {
+                let correctAnswers = 0;
+                let totalQuestions = document.querySelectorAll('.quiz-question').length;
+                
+                selectedOptions.forEach(option => {
+                    if (option && option.getAttribute('data-correct') === 'true') {
+                        correctAnswers++;
+                    }
+                });
+                
+                // Mostra resultado
+                quizScore.textContent = `${correctAnswers}/${totalQuestions}`;
+                
+                if (correctAnswers === totalQuestions) {
+                    quizMessage.textContent = "Excelente! Você dominou o conteúdo desta lição.";
+                } else if (correctAnswers >= totalQuestions/2) {
+                    quizMessage.textContent = "Bom trabalho! Você entendeu a maior parte do conteúdo.";
+                } else {
+                    quizMessage.textContent = "Você pode melhorar! Revise a lição e tente novamente.";
+                }
+                
+                quizResult.style.display = 'block';
+                submitBtn.style.display = 'none';
+                restartBtn.style.display = 'inline-block';
+                
+                // Rola para o resultado
+                quizResult.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            restartBtn.addEventListener('click', function() {
+                // Reseta o quiz
+                quizOptions.forEach(option => {
+                    option.classList.remove('selected');
+                });
+                
+                selectedOptions = [];
+                quizResult.style.display = 'none';
+                submitBtn.style.display = 'inline-block';
+                restartBtn.style.display = 'none';
+            });
+            
+            // Atualização da data da semana (exemplo simples)
+            const today = new Date();
+            const startOfWeek = new Date(today);
+            startOfWeek.setDate(today.getDate() - today.getDay());
+            const endOfWeek = new Date(startOfWeek);
+            endOfWeek.setDate(startOfWeek.getDate() + 6);
+            
+            const options = { day: 'numeric', month: 'long' };
+            const weekInfo = document.querySelector('.week-info p:nth-child(1)');
+            if (weekInfo) {
+                weekInfo.innerHTML = `<i class="fas fa-calendar-week"></i> Semana: ${startOfWeek.toLocaleDateString('pt-BR', options)} a ${endOfWeek.toLocaleDateString('pt-BR', options)} de ${endOfWeek.getFullYear()}`;
+            }
+            
+            // Animações ao scroll
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, observerOptions);
+            
+            // Observa os cards de conteúdo
+            document.querySelectorAll('.content-card').forEach(card => {
+                card.style.opacity = "0";
+                card.style.transform = "translateY(20px)";
+                card.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
